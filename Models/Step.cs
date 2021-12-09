@@ -12,5 +12,8 @@ namespace origami_backend.Models
         public string Description { get; set; }
         public string PicturePath { get; set; }
         public int Number { get; set; }
+
+        // relations
+        public virtual Origami Origami { get; set; }
     }
 }

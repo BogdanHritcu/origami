@@ -15,5 +15,9 @@ namespace origami_backend.Models
         public bool Favorite { get; set; }
         public DateTime? DateStarted { get; set; }
         public DateTime? DateFinished { get; set; }
+
+        // relations
+        public virtual User User { get; set; }
+        public virtual Origami Origami { get; set; }
     }
 }

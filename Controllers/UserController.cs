@@ -16,9 +16,6 @@ namespace origami_backend.Controllers
         {
             return new User
             {
-                Name = "Bog",
-                Username = "Cog",
-                Displayname = "Dog"
             };
         }
     }
