@@ -8,6 +8,7 @@ namespace origami_backend.Models
     public enum Role { None, User, Admin }
     public class User : BaseEntity
     {
+        public Guid ProfileId { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string HashSalt { get; set; }
