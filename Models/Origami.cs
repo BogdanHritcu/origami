@@ -8,6 +8,7 @@ namespace origami_backend.Models
     public enum Difficulty { Easy, Medium, Hard }
     public class Origami : BaseEntity
     {
+        public Guid UserId { get; set; }
         public string Name { get; set; }
         public string PicturePath { get; set; }
         public string Description { get; set; }
