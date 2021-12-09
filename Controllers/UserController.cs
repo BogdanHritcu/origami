@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +11,15 @@ namespace origami_backend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        List<User> users = new List<User>
-        {
-            new User {Name = "Bog"},
-            new User {Name = "Cog"},
-            new User {Name = "Dog"}
-        };
-
-        [HttpGet("")]
+        [HttpGet("{id}")]
         public User Get(int id)
         {
-            return users.FirstOrDefault(s => s.Id.Equals(id));
+            return new User
+            {
+                Name = "Bog",
+                Username = "Cog",
+                Displayname = "Dog"
+            };
         }
     }
 }

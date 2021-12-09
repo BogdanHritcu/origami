@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace origami_backend.Models.Base
+namespace origami_backend.Models
 {
-    public class BaseEntity : IBaseEntity
+    public class BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

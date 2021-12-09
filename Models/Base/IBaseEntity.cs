@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace origami_backend.Models.Base
+namespace origami_backend.Models
 {
     public interface IBaseEntity
     {
-        Guid Id { get; set; }
-        DateTime? DateCreated { get; set; }
-        DateTime? DateModified { get; set; }
+        public Guid Id { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateModified { get; set; }
     }
 }
