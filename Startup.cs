@@ -13,6 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using origami_backend.Data;
+using origami_backend.Utilities;
+using origami_backend.Utilities.JWTUtilis;
+using origami_backend.Services;
+using origami_backend.Repositories;
 
 namespace origami_backend
 {
@@ -35,6 +39,10 @@ namespace origami_backend
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "origami_backend", Version = "v1" });
             });
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddScoped<IJWTUtils, JWTUtils>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +58,8 @@ namespace origami_backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseMiddleware<JWTMiddleware>();
 
             app.UseAuthorization();
 
