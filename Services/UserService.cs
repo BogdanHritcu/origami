@@ -16,13 +16,20 @@ namespace origami_backend.Services
     {
         public IUserRepository _userRepository;
         public IProfileRepository _profileRepository;
+        public IProfileCommentRepository _profileCommentRepository;
         private IJWTUtils _JWtUtils;
         private readonly AppSettings _appSettings;
 
-        public UserService(IUserRepository userRepository, IProfileRepository profileRepository, IJWTUtils JWtUtils, IOptions<AppSettings> appSettings)
+        public UserService(
+            IUserRepository userRepository,
+            IProfileRepository profileRepository,
+            IProfileCommentRepository profileCommentRepository,
+            IJWTUtils JWtUtils, 
+            IOptions<AppSettings> appSettings)
         {
             _userRepository = userRepository;
             _profileRepository = profileRepository;
+            _profileCommentRepository = profileCommentRepository;
             _JWtUtils = JWtUtils;
             _appSettings = appSettings.Value;
         }
@@ -100,6 +107,41 @@ namespace origami_backend.Services
         {
             var user = _userRepository.GetByUsernameIncludingProfile(username);
             return new ProfileDTO(user);
+        }
+
+        public CommentDTO PostComment(
+            string commenterUsername,
+            string profileUsername,
+            CommentDTO comment)
+        {
+            var profileUser = _userRepository.GetByUsername(profileUsername);
+            if (profileUser == null)
+            {
+                return null;
+            }
+
+            var commenterUser = _userRepository.GetByUsername(commenterUsername);
+            if (commenterUser == null)
+            {
+                return null;
+            }
+
+            var profileComment = new ProfileComment
+            {
+                UserId = commenterUser.Id,
+                ProfileId = profileUser.ProfileId,
+                Body = comment.Body
+            };
+
+            _profileCommentRepository.Create(profileComment);
+            bool success = _profileCommentRepository.Save();
+
+            if (!success)
+            {
+                return null;
+            }
+
+            return comment;
         }
 
         public IEnumerable<User> GetAllUsers()

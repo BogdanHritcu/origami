@@ -14,6 +14,10 @@ namespace origami_backend.Services
         User GetByUsername(string username);
         User GetById(Guid id);
         ProfileDTO GetProfileDTO(string username);
+        CommentDTO PostComment(
+            string commenterUsername,
+            string profileUsername,
+            CommentDTO comment);
         IEnumerable<User> GetAllUsers();
     }
 }
