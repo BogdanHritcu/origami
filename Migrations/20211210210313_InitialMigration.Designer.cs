@@ -10,7 +10,7 @@ using origami_backend.Data;
 namespace origami_backend.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211210202434_InitialMigration")]
+    [Migration("20211210210313_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -278,7 +278,7 @@ namespace origami_backend.Migrations
                     b.Property<string>("PicturePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ProfileId")
+                    b.Property<Guid>("ProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Role")
@@ -290,8 +290,7 @@ namespace origami_backend.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId")
-                        .IsUnique()
-                        .HasFilter("[ProfileId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -373,7 +372,9 @@ namespace origami_backend.Migrations
                 {
                     b.HasOne("origami_backend.Models.Profile", "Profile")
                         .WithOne("User")
-                        .HasForeignKey("origami_backend.Models.User", "ProfileId");
+                        .HasForeignKey("origami_backend.Models.User", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Profile");
                 });

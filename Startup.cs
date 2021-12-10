@@ -42,6 +42,7 @@ namespace origami_backend
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<IJWTUtils, JWTUtils>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IUserService, UserService>();
         }
 

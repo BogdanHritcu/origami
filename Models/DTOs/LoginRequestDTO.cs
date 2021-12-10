@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace origami_backend.Models.DTOs.Login
+namespace origami_backend.Models.DTOs
 {
     public class LoginRequestDTO
     {

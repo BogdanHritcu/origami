@@ -29,7 +29,7 @@ namespace origami_backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HashSalt = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -47,7 +47,7 @@ namespace origami_backend.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,8 +232,7 @@ namespace origami_backend.Migrations
                 name: "IX_Users_ProfileId",
                 table: "Users",
                 column: "ProfileId",
-                unique: true,
-                filter: "[ProfileId] IS NOT NULL");
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -23,7 +23,10 @@ namespace origami_backend.Repositories
 
         public User GetByUsernameIncludingProfile(string username)
         {
-            return _table.Include(x => x.Profile).FirstOrDefault(x => x.Username.Equals(username));
+            return _table.Include(x => x.Profile)
+                .ThenInclude(x => x.ProfileComments)
+                .ThenInclude(x => x.User)
+                .FirstOrDefault(x => x.Username.Equals(username));
         }
     }
 }

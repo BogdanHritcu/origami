@@ -1,6 +1,5 @@
 ﻿using origami_backend.Models;
-using origami_backend.Models.DTOs.Login;
-using origami_backend.Models.DTOs.Register;
+using origami_backend.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,7 @@ namespace origami_backend.Services
         LoginResponseDTO Register(RegisterRequestDTO req);
         User GetByUsername(string username);
         User GetById(Guid id);
+        ProfileDTO GetProfileDTO(string username);
         IEnumerable<User> GetAllUsers();
     }
 }

@@ -8,20 +8,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using origami_backend.Repositories;
-using origami_backend.Models.DTOs.Login;
-using origami_backend.Models.DTOs.Register;
+using origami_backend.Models.DTOs;
 
 namespace origami_backend.Services
 {
     public class UserService : IUserService
     {
         public IUserRepository _userRepository;
+        public IProfileRepository _profileRepository;
         private IJWTUtils _JWtUtils;
         private readonly AppSettings _appSettings;
 
-        public UserService(IUserRepository userRepository, IJWTUtils JWtUtils, IOptions<AppSettings> appSettings)
+        public UserService(IUserRepository userRepository, IProfileRepository profileRepository, IJWTUtils JWtUtils, IOptions<AppSettings> appSettings)
         {
             _userRepository = userRepository;
+            _profileRepository = profileRepository;
             _JWtUtils = JWtUtils;
             _appSettings = appSettings.Value;
         }
@@ -47,17 +48,34 @@ namespace origami_backend.Services
                 return null;
             }
 
+            var profile = new Profile
+            {
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Birthday = req.Birthday
+            };
+
+            _profileRepository.Create(profile);
+            
+            bool success = _profileRepository.Save();
+            
+            if (!success)
+            {
+                return null;
+            }
+
             user = new User
             {
                 Username = req.Username,
                 PasswordHash = BCryptNet.HashPassword(req.Password),
                 HashSalt = BCryptNet.GenerateSalt(),
                 Email = req.Email,
-                Role = Role.User
+                Role = Role.User,
+                ProfileId = profile.Id
             };
 
             _userRepository.Create(user);
-            bool success = _userRepository.Save();
+            success = _userRepository.Save();
             
             if (!success)
             {
@@ -76,6 +94,12 @@ namespace origami_backend.Services
         public User GetById(Guid id)
         {
             return _userRepository.Get(id);
+        }
+
+        public ProfileDTO GetProfileDTO(string username)
+        {
+            var user = _userRepository.GetByUsernameIncludingProfile(username);
+            return new ProfileDTO(user);
         }
 
         public IEnumerable<User> GetAllUsers()

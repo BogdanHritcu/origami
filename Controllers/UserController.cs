@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using BCryptNet = BCrypt.Net.BCrypt;
 using origami_backend.Models;
 using origami_backend.Services;
-using origami_backend.Models.DTOs.Login;
-using origami_backend.Models.DTOs.Register;
+using origami_backend.Models.DTOs;
 using origami_backend.Utilities.Attributes;
 
 namespace origami_backend.Controllers

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace origami_backend.Models.DTOs.Register
+namespace origami_backend.Models.DTOs
 {
     public class RegisterRequestDTO
     {
@@ -13,5 +13,8 @@ namespace origami_backend.Models.DTOs.Register
         [Required]
         public string Password { get; set; }
         public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime? Birthday { get; set; }
     }
 }
