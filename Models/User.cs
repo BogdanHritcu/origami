@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace origami_backend.Models
 {
-    public enum Role { None, User, Admin }
+    public enum Role { Admin, User }
     public class User : BaseEntity
     {
         public Guid? ProfileId { get; set; }
