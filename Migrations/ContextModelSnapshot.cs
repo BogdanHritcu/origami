@@ -268,7 +268,7 @@ namespace origami_backend.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProfileId")
+                    b.Property<Guid?>("ProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Role")
@@ -280,7 +280,8 @@ namespace origami_backend.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -362,9 +363,7 @@ namespace origami_backend.Migrations
                 {
                     b.HasOne("origami_backend.Models.Profile", "Profile")
                         .WithOne("User")
-                        .HasForeignKey("origami_backend.Models.User", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("origami_backend.Models.User", "ProfileId");
 
                     b.Navigation("Profile");
                 });
