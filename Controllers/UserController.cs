@@ -23,7 +23,7 @@ namespace origami_backend.Controllers
             _userService = userService;
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost("login")]
         public IActionResult Authenticate(LoginRequestDTO req)
         {
             var response = _userService.Authenticate(req);
