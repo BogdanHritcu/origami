@@ -22,7 +22,7 @@ namespace origami_backend.Utilities
 
         public async Task Invoke(HttpContext httpContext, IUserService userService, IJWTUtils jWTUtils)
         {
-            var token = httpContext.Request.Headers["Autorization"].FirstOrDefault()?.Split(" ").Last();
+            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             var userId = jWTUtils.ValidateToken(token);
 
