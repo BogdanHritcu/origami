@@ -30,7 +30,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -77,7 +77,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -111,7 +111,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -119,20 +119,11 @@ namespace origami_backend.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Displayname")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PicturePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Theme")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -153,7 +144,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -184,7 +175,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -225,13 +216,13 @@ namespace origami_backend.Migrations
                     b.Property<DateTime?>("DateFinished")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateStarted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<DateTime?>("DateStarted")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Favorite")
                         .HasColumnType("bit");
@@ -268,7 +259,7 @@ namespace origami_backend.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime?>("DateUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
@@ -280,6 +271,9 @@ namespace origami_backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PicturePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ProfileId")

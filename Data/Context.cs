@@ -28,7 +28,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<User>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Origami>()
@@ -36,7 +36,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Origami>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Profile>()
@@ -44,7 +44,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Profile>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Study>()
@@ -52,7 +52,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Study>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Step>()
@@ -60,7 +60,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<Step>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<OrigamiComment>()
@@ -68,7 +68,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<OrigamiComment>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<ProfileComment>()
@@ -76,7 +76,7 @@ namespace origami_backend.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder.Entity<ProfileComment>()
-                .Property(e => e.DateModified)
+                .Property(e => e.DateUpdated)
                 .HasDefaultValueSql("GETDATE()");
 
             base.OnModelCreating(builder);

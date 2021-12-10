@@ -9,6 +9,6 @@ namespace origami_backend.Models
     {
         public Guid Id { get; set; }
         public DateTime? DateCreated { get; set; }
-        public DateTime? DateModified { get; set; }
+        public DateTime? DateUpdated { get; set; }
     }
 }
