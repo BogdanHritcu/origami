@@ -15,6 +15,7 @@ namespace origami_backend.Models
         public string HashSalt { get; set; }
         public string Email { get; set; }
         public Role Role { get; set; }
+        public string PicturePath { get; set; }
 
         // relations
         public virtual Profile Profile { get; set; }
