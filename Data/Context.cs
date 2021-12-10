@@ -23,7 +23,62 @@ namespace origami_backend.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<User>().HasOne(u => u.Profile).WithOne()
+            builder.Entity<User>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<User>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Origami>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Origami>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Profile>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Profile>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Study>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Study>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Step>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<Step>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<OrigamiComment>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<OrigamiComment>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<ProfileComment>()
+                .Property(e => e.DateCreated)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Entity<ProfileComment>()
+                .Property(e => e.DateModified)
+                .HasDefaultValueSql("GETDATE()");
+
             base.OnModelCreating(builder);
         }
     }
