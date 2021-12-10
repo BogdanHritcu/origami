@@ -14,6 +14,6 @@ namespace origami_backend.Models
         public DateTime? DateCreated { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? DateModified { get; set; }
+        public DateTime? DateUpdated { get; set; }
     }
 }
