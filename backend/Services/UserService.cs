@@ -18,20 +18,17 @@ namespace origami_backend.Services
         public IProfileRepository _profileRepository;
         public IProfileCommentRepository _profileCommentRepository;
         private IJWTUtils _JWtUtils;
-        private readonly AppSettings _appSettings;
 
         public UserService(
             IUserRepository userRepository,
             IProfileRepository profileRepository,
             IProfileCommentRepository profileCommentRepository,
-            IJWTUtils JWtUtils, 
-            IOptions<AppSettings> appSettings)
+            IJWTUtils JWtUtils)
         {
             _userRepository = userRepository;
             _profileRepository = profileRepository;
             _profileCommentRepository = profileCommentRepository;
             _JWtUtils = JWtUtils;
-            _appSettings = appSettings.Value;
         }
 
         public LoginResponseDTO Authenticate(LoginRequestDTO req)
@@ -98,7 +95,7 @@ namespace origami_backend.Services
             return _userRepository.GetByUsername(username);
         }
 
-        public User GetById(Guid id)
+        public User Get(Guid id)
         {
             return _userRepository.Get(id);
         }

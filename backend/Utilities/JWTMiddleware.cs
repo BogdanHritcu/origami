@@ -28,7 +28,7 @@ namespace origami_backend.Utilities
 
             if(userId != Guid.Empty)
             {
-                httpContext.Items["User"] = userService.GetById(userId);
+                httpContext.Items["User"] = userService.Get(userId);
             }
 
             await _next(httpContext);

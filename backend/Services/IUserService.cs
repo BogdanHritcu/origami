@@ -12,7 +12,7 @@ namespace origami_backend.Services
         LoginResponseDTO Authenticate(LoginRequestDTO req);
         LoginResponseDTO Register(RegisterRequestDTO req);
         User GetByUsername(string username);
-        User GetById(Guid id);
+        User Get(Guid id);
         ProfileDTO GetProfileDTO(string username);
         CommentDTO PostComment(
             string commenterUsername,
