@@ -43,8 +43,12 @@ namespace origami_backend
             services.AddScoped<IJWTUtils, JWTUtils>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
+            services.AddScoped<IOrigamiRepository, OrigamiRepository>();
+            services.AddScoped<IStepRepository, StepRepository>();
             services.AddScoped<IProfileCommentRepository, ProfileCommentRepository>();
+            services.AddScoped<IOrigamiCommentRepository, OrigamiCommentRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrigamiService, OrigamiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
