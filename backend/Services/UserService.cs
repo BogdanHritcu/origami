@@ -103,6 +103,11 @@ namespace origami_backend.Services
         public ProfileDTO GetProfileDTO(string username)
         {
             var user = _userRepository.GetByUsernameIncludingProfile(username);
+            if (user == null)
+            {
+                return null;
+            }
+
             return new ProfileDTO(user);
         }
 
