@@ -38,6 +38,15 @@ namespace origami_backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "origami_backend", Version = "v1" });
             });
+            services.AddCors(c =>
+            {
+                c.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<IJWTUtils, JWTUtils>();
@@ -64,6 +73,8 @@ namespace origami_backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseMiddleware<JWTMiddleware>();
 
