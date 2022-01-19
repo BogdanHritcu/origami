@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.full-width {
+    width: 100%;
+}
+
+.comment-card-width-small {
+    max-width: 300px;
+}
+
+.comment-card-width-medium {
+    max-width: 400px;
+}
+
+.comment-card-width-large {
+    max-width: 600px;
+}

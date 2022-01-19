@@ -1,7 +1,24 @@
 <h1>{{ profile.username }}</h1>
-<ul>
-    <li *ngFor="let comment of profile.comments">
-        <h3>{{ comment.username }}</h3>
-        <p>{{ comment.body }}</p>
-    </li>
-</ul>
+
+<h2>Comments</h2>
+
+<div *ngFor="let comment of profile.comments">
+    <app-comment
+        [comment]="comment"
+        (onDeleteComment)="deleteComment($event)"
+    ></app-comment>
+</div>
+
+<form [formGroup]="commentForm" (ngSubmit)="postComment()">
+  <mat-card class="comment-card-width-large">
+    <mat-form-field class="full-width form-group" appearance="fill">
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput class="form-control"
+      formControlName="text"
+      placeholder="Ex. I like your profile..."></textarea>
+      <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">Submit</button>
+    </mat-form-field>
+  </mat-card>
+</form>
+
+  

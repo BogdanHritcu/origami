@@ -8,7 +8,7 @@ import { PrivateService } from 'src/app/services/private.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public myProfile: Profile = {
+  public profile: Profile = {
     username: '',
     picturePath: '',
     firstName: '',
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
   getMyProfile() {
     this.privateService.getMyProfile().subscribe((response: any) => {
-      this.myProfile = response;
+      this.profile = response;
     });
   }
 }

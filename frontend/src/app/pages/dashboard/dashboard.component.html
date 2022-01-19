@@ -1,7 +1,9 @@
-<h1>{{ myProfile.username }}</h1>
-<ul>
-    <li *ngFor="let comment of myProfile.comments">
-        <h3>{{ comment.username }}</h3>
-        <p>{{ comment.body }}</p>
-    </li>
-</ul>
+<h1>{{ profile.username }}</h1>
+
+<h2>Comments</h2>
+
+<div *ngFor="let comment of profile.comments">
+    <app-comment
+        [comment]="comment"
+    ></app-comment>
+</div>

@@ -25,6 +25,10 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'profile/me',
+    component: DashboardComponent
+  },
+  {
     path: 'profile/:username',
     component: ProfileComponent
   }

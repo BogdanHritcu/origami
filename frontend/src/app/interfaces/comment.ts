@@ -1,5 +1,6 @@
 export interface Comment {
-    username?: string;
-    picturePath?: string;
-    body?: string;
+    id?: string;
+    username: string;
+    picturePath: string;
+    body: string;
 }
