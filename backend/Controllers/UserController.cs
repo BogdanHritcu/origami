@@ -48,36 +48,6 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
-        [HttpPost("profile/{username}")]
-        public IActionResult PostCommet(string username, CommentDTO comment)
-        {
-            var myUser = (User)HttpContext.Items["User"];
-            if (myUser == null)
-            {
-                return BadRequest(new { Message = "Need to login first!" });
-            }
-
-            var response = _userService.PostComment(myUser.Username, username, comment);
-
-            if (response == null)
-            {
-                return BadRequest(new { Message = "Something went wrong!" });
-            }
-            return Ok(response);
-        }
-
-        [HttpGet("profile/{username}")]
-        public IActionResult GetProfile(string username)
-        {
-            var response = _userService.GetProfileDTO(username);
-            if (response == null)
-            {
-                return BadRequest(new { Message = "User does not exist!" });
-            }
-
-            return Ok(response);
-        }
-
         [Authorization(Role.Admin)]
         [HttpGet("all")]
         public IActionResult GetAllUsers()
