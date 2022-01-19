@@ -18,6 +18,7 @@ namespace origami_backend.Services
             string commenterUsername,
             Guid origamiId,
             CommentDTO comment);
+        CommentDTO DeleteComment(CommentDTO commentDTO);
         IEnumerable<OrigamiDTO> GetUserCreatedOrigamis(string username);
     }
 }

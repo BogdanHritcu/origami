@@ -38,13 +38,15 @@ namespace origami_backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "origami_backend", Version = "v1" });
             });
-            services.AddCors(c =>
+            services.AddCors(options =>
             {
-                c.AddDefaultPolicy(builder =>
+                options.AddDefaultPolicy(builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder
+                    .WithOrigins("http://localhost:4200", "http://localhost:44343")
+                    .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowCredentials();
                 });
             });
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -52,8 +52,8 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
-        [HttpPost("{username}")]
-        public IActionResult PostCommet(string username, CommentDTO comment)
+        [HttpPost("comment/{username}")]
+        public IActionResult PostComment(string username, CommentDTO comment)
         {
             var myUser = (User)HttpContext.Items["User"];
             if (myUser == null)
@@ -62,6 +62,24 @@ namespace origami_backend.Controllers
             }
 
             var response = _userService.PostComment(myUser.Username, username, comment);
+
+            if (response == null)
+            {
+                return BadRequest(new { Message = "Something went wrong!" });
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("comment")]
+        public IActionResult DeleteComment(CommentDTO commentDTO)
+        {
+            var myUser = (User)HttpContext.Items["User"];
+            if (myUser == null || myUser.Username != commentDTO.Username)
+            {
+                return BadRequest(new { Message = "Need to login first!" });
+            }
+
+            var response = _userService.DeleteComment(commentDTO);
 
             if (response == null)
             {

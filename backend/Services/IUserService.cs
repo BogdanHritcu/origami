@@ -18,6 +18,8 @@ namespace origami_backend.Services
             string commenterUsername,
             string profileUsername,
             CommentDTO comment);
+
+        CommentDTO DeleteComment(CommentDTO commentDTO);
         IEnumerable<User> GetAllUsers();
     }
 }

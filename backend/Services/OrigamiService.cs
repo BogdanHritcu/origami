@@ -151,6 +151,25 @@ namespace origami_backend.Services
             return comment;
         }
 
+        public CommentDTO DeleteComment(CommentDTO commentDTO)
+        {
+            var comment = _origamiCommentRepository.Get(commentDTO.Id);
+            if (comment == null)
+            {
+                return commentDTO;
+            }
+
+            _origamiCommentRepository.Delete(comment);
+            bool success = _origamiCommentRepository.Save();
+
+            if (!success)
+            {
+                return null;
+            }
+
+            return commentDTO;
+        }
+
         public IEnumerable<OrigamiDTO> GetUserCreatedOrigamis(string username)
         {
             var user = _userRepository.GetByUsername(username);
