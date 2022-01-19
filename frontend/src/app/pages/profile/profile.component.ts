@@ -58,10 +58,10 @@ export class ProfileComponent implements OnInit {
         picturePath: '',
         body: '' + this.commentForm.get('text')?.value
       };
-      console.log(comment);
       this.privateService.postComment(comment, this.profileUsername).subscribe((response: any) => {
         if (response && response.username === this.myUsername) {
           console.log("Comment posted.")
+          this.ngOnInit();
         } else {
           console.log("Comment not posted.")
         }
@@ -73,6 +73,7 @@ export class ProfileComponent implements OnInit {
     this.privateService.deleteComment(comment).subscribe((response: any) => {
       if (response && response.username === this.myUsername) {
         console.log("Comment deleted.")
+        this.ngOnInit();
       } else {
         console.log("Comment not deleted.")
       }

@@ -9,9 +9,10 @@ export class PublicService {
   private baseUrl = environment.baseUrl;
   private publicHeaders = {
     headers: new HttpHeaders({
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
     })
   };
+
   constructor(private http: HttpClient) { }
 
   getProfile(username: string) {

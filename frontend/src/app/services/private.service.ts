@@ -10,10 +10,11 @@ export class PrivateService {
   private baseUrl = environment.baseUrl;
   private privateHeaders = {
     headers: new HttpHeaders({
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
       Authorization: '' + localStorage.getItem('token')
     })
   };
+
   constructor(private http: HttpClient) { }
 
   getMyProfile() {
@@ -25,7 +26,7 @@ export class PrivateService {
   }
 
   postComment(comment: Comment, username: string) {
-    return this.http.post(this.baseUrl + 'api/profile/comment/' + username, {headers: this.privateHeaders.headers, body: comment});
+    return this.http.post(this.baseUrl + 'api/profile/comment/' + username, comment, this.privateHeaders);
   }
 
   deleteComment(comment: Comment) {
