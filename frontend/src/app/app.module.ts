@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from './shared/shared/shared.module';
@@ -30,6 +31,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,

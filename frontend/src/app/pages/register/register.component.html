@@ -1,1 +1,23 @@
-<p>register works!</p>
+<h1>Register</h1>
+<br>
+<form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+    <mat-label>Username</mat-label>
+    <mat-form-field class="full-width form-group">
+        <input matInput placeholder="Ex. Bob" class="form-control" formControlName="username">
+    </mat-form-field>
+    <mat-label>Password</mat-label>
+    <mat-form-field class="full-width form-group" appearance="fill">
+        <input matInput type="password" placeholder="Ex. MyGreatPassword" class="form-control" formControlName="password">
+    </mat-form-field>
+    <mat-label>Email</mat-label>
+    <mat-form-field class="full-width form-group" appearance="fill">
+        <input matInput placeholder="Ex. bob@email.com" class="form-control" formControlName="email">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
+</form>
+
+<div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+<div class="alert alert-danger" [hidden]="!error">{{ error }}</div>
+<div class="alert alert-danger" [style.display]="error ? 'block' : 'none'">
+  {{ error }}
+</div>
