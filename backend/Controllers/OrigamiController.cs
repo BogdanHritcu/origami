@@ -21,6 +21,7 @@ namespace origami_backend.Controllers
             _origamiService = origamiService;
         }
 
+        [Authorization(Role.User)]
         [HttpPost("create")]
         public IActionResult Create(OrigamiDTO req)
         {
@@ -40,6 +41,7 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
+        [Authorization(Role.User, Role.Admin)]
         [HttpPost("{id}")]
         public IActionResult PostComment(Guid id, CommentDTO comment)
         {
@@ -58,6 +60,7 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
+        [Authorization(Role.User, Role.Admin)]
         [HttpDelete("comment")]
         public IActionResult DeleteComment(CommentDTO commentDTO)
         {

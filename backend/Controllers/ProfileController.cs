@@ -22,6 +22,7 @@ namespace origami_backend.Controllers
             _userService = userService;
         }
 
+        [Authorization(Role.User, Role.Admin)]
         [HttpGet("me")]
         public IActionResult GetMyProfile()
         {
@@ -52,6 +53,7 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
+        [Authorization(Role.User, Role.Admin)]
         [HttpPost("comment/{username}")]
         public IActionResult PostComment(string username, CommentDTO comment)
         {
@@ -70,6 +72,7 @@ namespace origami_backend.Controllers
             return Ok(response);
         }
 
+        [Authorization(Role.User, Role.Admin)]
         [HttpDelete("comment")]
         public IActionResult DeleteComment(CommentDTO commentDTO)
         {

@@ -12,7 +12,8 @@ namespace origami_backend.Models.DTOs
         [MinLength(3)]
         public string Username { get; set; }
         [Required]
-        [Range(8, 32)]
+        [MinLength(8)]
+        [MaxLength(32)]
         public string Password { get; set; }
         [Required]
         [EmailAddress]
