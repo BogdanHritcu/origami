@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CommentComponent } from '../comment/comment.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   exports: [
     CommentComponent

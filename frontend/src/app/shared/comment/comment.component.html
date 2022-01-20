@@ -1,7 +1,11 @@
 <mat-card class="comment-card-width-large">
   <mat-card-header>
     <div mat-card-avatar style="background-image: url(https://i.pinimg.com/474x/65/25/a0/6525a08f1df98a2e3a545fe2ace4be47.jpg); background-size: cover;"></div>
-    <mat-card-title>{{ comment.username }}</mat-card-title>
+    <mat-card-title>
+      <a routerLink="/profile/{{comment.username}}" class="no-decoration">
+      {{ comment.username }}
+    </a>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <p>{{ comment.body }}</p>
