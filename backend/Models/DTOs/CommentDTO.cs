@@ -8,8 +8,10 @@ namespace origami_backend.Models.DTOs
     public class CommentDTO
     {
         public Guid Id { get; set; }
-        public string Username { get; set; }
+        public string CommenterUsername { get; set; }
+        public string ProfileUsername { get; set; }
         public string PicturePath { get; set; }
         public string Body { get; set; }
+        public DateTime? DateUpdated { get; set; }
     }
 }

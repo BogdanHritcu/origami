@@ -54,16 +54,34 @@ namespace origami_backend.Controllers
         }
 
         [Authorization(Role.User, Role.Admin)]
-        [HttpPost("comment/{username}")]
-        public IActionResult PostComment(string username, CommentDTO comment)
+        [HttpPost("comment")]
+        public IActionResult PostComment(CommentDTO comment)
         {
             var myUser = (User)HttpContext.Items["User"];
-            if (myUser == null)
+            if (myUser == null || !myUser.Username.Equals(comment.CommenterUsername))
+            {
+                return BadRequest(new { Message = "Need to login first!" });
+            }
+           
+            var response = _userService.PostComment(comment);
+
+            if (response == null)
+            {
+                return BadRequest(new { Message = "Something went wrong!" });
+            }
+            return Ok(response);
+        }
+
+        [HttpPut("comment")]
+        public IActionResult UpdateComment(CommentDTO comment)
+        {
+            var myUser = (User)HttpContext.Items["User"];
+            if (myUser == null || !myUser.Username.Equals(comment.CommenterUsername))
             {
                 return BadRequest(new { Message = "Need to login first!" });
             }
 
-            var response = _userService.PostComment(myUser.Username, username, comment);
+            var response = _userService.UpdateComment(comment);
 
             if (response == null)
             {
@@ -74,15 +92,15 @@ namespace origami_backend.Controllers
 
         [Authorization(Role.User, Role.Admin)]
         [HttpDelete("comment")]
-        public IActionResult DeleteComment(CommentDTO commentDTO)
+        public IActionResult DeleteComment(CommentDTO comment)
         {
             var myUser = (User)HttpContext.Items["User"];
-            if (myUser == null || myUser.Username != commentDTO.Username)
+            if (myUser == null || !myUser.Username.Equals(comment.CommenterUsername))
             {
                 return BadRequest(new { Message = "Need to login first!" });
             }
 
-            var response = _userService.DeleteComment(commentDTO);
+            var response = _userService.DeleteComment(comment);
 
             if (response == null)
             {

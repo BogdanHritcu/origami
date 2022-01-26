@@ -111,18 +111,15 @@ namespace origami_backend.Services
             return new ProfileDTO(user);
         }
 
-        public CommentDTO PostComment(
-            string commenterUsername,
-            string profileUsername,
-            CommentDTO comment)
+        public CommentDTO PostComment(CommentDTO comment)
         {
-            var profileUser = _userRepository.GetByUsername(profileUsername);
+            var profileUser = _userRepository.GetByUsername(comment.ProfileUsername);
             if (profileUser == null)
             {
                 return null;
             }
 
-            var commenterUser = _userRepository.GetByUsername(commenterUsername);
+            var commenterUser = _userRepository.GetByUsername(comment.CommenterUsername);
             if (commenterUser == null)
             {
                 return null;
@@ -142,7 +139,40 @@ namespace origami_backend.Services
             {
                 return null;
             }
+            comment.DateUpdated = profileComment.DateUpdated;
+            return comment;
+        }
 
+        public CommentDTO UpdateComment(CommentDTO comment)
+        {
+            var profileUser = _userRepository.GetByUsername(comment.ProfileUsername);
+            if (profileUser == null)
+            {
+                return null;
+            }
+
+            var commenterUser = _userRepository.GetByUsername(comment.CommenterUsername);
+            if (commenterUser == null)
+            {
+                return null;
+            }
+
+            var profileComment = _profileCommentRepository.Get(comment.Id);
+            if (profileComment == null || !profileComment.UserId.Equals(commenterUser.Id))
+            {
+                return null;
+            }
+
+            profileComment.Body = comment.Body;
+            
+            _profileCommentRepository.Update(profileComment);
+            bool success = _profileCommentRepository.Save();
+
+            if (!success)
+            {
+                return null;
+            }
+            comment.DateUpdated = profileComment.DateUpdated;
             return comment;
         }
 

@@ -53,9 +53,10 @@ namespace origami_backend.Models.DTOs
                     Comments.Add(new CommentDTO
                     {
                         Id = comment.Id,
-                        Username = comment.User.Username,
+                        CommenterUsername = comment.User.Username,
                         PicturePath = comment.User.PicturePath,
-                        Body = comment.Body
+                        Body = comment.Body,
+                        DateUpdated = comment.DateUpdated
                     });
                 }
             }

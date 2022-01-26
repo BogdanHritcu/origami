@@ -62,15 +62,15 @@ namespace origami_backend.Controllers
 
         [Authorization(Role.User, Role.Admin)]
         [HttpDelete("comment")]
-        public IActionResult DeleteComment(CommentDTO commentDTO)
+        public IActionResult DeleteComment(CommentDTO comment)
         {
             var myUser = (User)HttpContext.Items["User"];
-            if (myUser == null || myUser.Username != commentDTO.Username)
+            if (myUser == null || !myUser.Username.Equals(comment.CommenterUsername))
             {
                 return BadRequest(new { Message = "Need to login first!" });
             }
 
-            var response = _origamiService.DeleteComment(commentDTO);
+            var response = _origamiService.DeleteComment(comment);
 
             if (response == null)
             {
